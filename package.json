@@ -22,6 +22,8 @@
     "mascot:build": "node --experimental-strip-types scripts/build-mascot.mjs",
     "design:parity": "node scripts/design-parity.mjs",
     "screens": "node scripts/capture-screens.mjs",
+    "responsive": "node scripts/check-responsive.mjs",
+    "pwa:check": "node scripts/check-pwa.mjs",
     "brand:build": "node --experimental-strip-types scripts/build-brand.mjs",
     "dev:mobile:web": "pnpm --filter @sorriso/mobile web",
     "dev:mobile:ios": "pnpm --filter @sorriso/mobile ios",
