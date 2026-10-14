@@ -1,9 +1,9 @@
 import { FAQ_ITENS } from '@sorriso/shared';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
-export function Faq() {
+export function Faq({ embutido = false }: { embutido?: boolean }) {
   return (
-    <section aria-labelledby="faq" className="mx-auto max-w-6xl p-8">
+    <section aria-labelledby="faq" className={embutido ? '' : 'mx-auto w-full max-w-6xl px-6 py-16'}>
       <h2 id="faq" className="text-2xl">Perguntas frequentes</h2>
       <Accordion type="single" collapsible className="mt-4">
         {FAQ_ITENS.map(([p, r]) => (

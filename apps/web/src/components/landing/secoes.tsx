@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ChartBar, Check, ClipboardText, DeviceMobile, Desktop, DeviceTablet, HandHeart, ClosedCaptioning, CircleHalf, EyeSlash, FileCsv, HandTap, Infinity as InfinityIcon,
-  LockKey, Prohibit, ShieldCheck, Target, UserCircle, UsersThree, Wind, type Icon,
+  LockKey, PencilSimpleLine, Prohibit, SealCheck, Tooth, Target, UserCircle, UsersThree, Wind, type Icon,
 } from '@phosphor-icons/react';
 import { modulos, TEMAS } from '@sorriso/shared';
 import { Badge } from '@/components/ui/badge';
@@ -125,18 +125,19 @@ export function Conteudo() {
 export function ModoSala() {
   return (
     <Secao id="sala" kicker="Em sala de aula" titulo="Modo sala: o professor conduz, a turma acompanha" fundo>
-      <div className="grid items-center gap-8 lg:grid-cols-2">
+      <div className="grid items-start gap-8 lg:grid-cols-2">
         <Lista itens={['Funciona no computador, no tablet e no celular do professor', 'Mostre no projetor ou deixe a turma ver a tela', 'Textos e botões grandes, uma ação por tela, sem rolagem', 'Navegação por toque, setas, espaço ou clicador', 'Quiz coletivo: o professor registra a resposta da turma', 'Sem limite de tempo; vídeos e módulos ficam em cache para internet instável']} />
-        <div data-reveal className="rounded-lg border-8 border-petroleo-escuro bg-neve shadow-forte">
-          <div className="flex items-center justify-between border-b-2 border-border bg-card px-4 py-2">
-            <strong className="font-titulo">{modulos[0]?.titulo}</strong>
+        <div data-reveal className="overflow-hidden rounded-lg border-8 border-petroleo-escuro bg-neve shadow-forte">
+          <div className="flex items-center justify-between gap-3 border-b-2 border-border bg-card px-5 py-3">
+            <strong className="font-titulo text-lg">{modulos[0]?.titulo}</strong>
             <ol className="flex gap-1.5" aria-label="Etapas">{[0, 1, 2, 3].map((k) => <li key={k} className={`size-3.5 rounded-full border-2 border-border ${k < 3 ? 'bg-turquesa' : 'bg-amarelo-limao'}`} />)}</ol>
           </div>
-          <div className="grid items-center gap-3 p-5 sm:grid-cols-[auto_1fr]">
-            <Mascot pose="pensando" size={130} decorativo animar={false} />
-            <div className="grid gap-2">
-              <p className="text-sm font-bold">Pergunta em letras grandes</p>
-              {['Primeira opção', 'Segunda opção'].map((o, i) => <span key={o} className="flex items-center gap-3 rounded-full border-2 border-border bg-card px-4 py-2 font-bold"><span className="grid size-8 place-items-center rounded-full bg-turquesa">{i + 1}</span>{o}</span>)}
+          <div className="grid items-center gap-4 p-6 sm:grid-cols-[auto_1fr]">
+            <div className="hidden sm:block"><Mascot pose="pensando" size={150} decorativo animar={false} /></div>
+            <div className="grid gap-3">
+              <p className="text-sm font-bold">Pergunta 1 de 4</p>
+              <p className="font-titulo text-2xl font-extrabold leading-tight">Pergunta em letras grandes para toda a turma ler</p>
+              {['Primeira opção', 'Segunda opção'].map((o, i) => <span key={o} className="flex min-h-12 items-center gap-3 rounded-full border-2 border-border bg-card px-4 py-2 font-bold"><span className="grid size-8 shrink-0 place-items-center rounded-full bg-turquesa">{i + 1}</span>{o}</span>)}
             </div>
           </div>
         </div>
@@ -244,19 +245,44 @@ export function Privacidade() {
 }
 
 export function Validacao() {
-  const passos = ['A equipe cria o módulo: vídeo, passo a passo, jogo e quiz.', 'A integrante de Odontologia revisa cada informação de saúde.', 'Só então o módulo é publicado, com o nome de quem validou e a data.'];
+  const passos: { icone: Icon; titulo: string; texto: string }[] = [
+    { icone: PencilSimpleLine, titulo: 'A equipe cria o módulo', texto: 'Vídeo, passo a passo, jogo e quiz, com linguagem simples para crianças de 10 e 11 anos.' },
+    { icone: Tooth, titulo: 'A Odontologia revisa', texto: 'A integrante do curso de Odontologia confere cada informação de saúde antes de publicar.' },
+    { icone: SealCheck, titulo: 'Só então vai ao ar', texto: 'O módulo é publicado com o nome de quem validou e a data. Sem validação, ele não aparece.' },
+  ];
   return (
     <Secao id="validacao" kicker="Confiança" titulo="Conteúdo de saúde revisado por quem entende">
-      <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
-        <ol className="grid gap-3">
-          {passos.map((t, i) => (
-            <li key={t} data-reveal className="flex items-start gap-4 text-lg">
-              <span className="grid size-10 shrink-0 place-items-center rounded-full border-2 border-border bg-amarelo-limao font-titulo text-xl font-extrabold">{i + 1}</span>{t}
+      <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
+        <ol className="relative grid gap-5">
+          <span aria-hidden="true" className="absolute top-12 bottom-24 left-6 w-0.5 bg-border/30" />
+          {passos.map((p, i) => (
+            <li key={p.titulo} data-reveal className="relative flex gap-4">
+              <span className="relative z-10 grid size-12 shrink-0 place-items-center rounded-full border-2 border-border bg-amarelo-limao"><p.icone size={26} weight="bold" aria-hidden="true" /></span>
+              <div><p className="text-sm font-extrabold">Passo {i + 1}</p><h3 className="text-xl">{p.titulo}</h3><p className="mt-1 text-lg">{p.texto}</p></div>
             </li>
           ))}
         </ol>
-        <div data-reveal className="mx-auto grid justify-items-center gap-2"><ShieldCheck size={40} weight="duotone" aria-hidden="true" /><Ilustracao nome="dente-brilhando" size={140} /></div>
+
+        <div data-reveal className="relative mx-auto w-full max-w-md">
+          <div className="relative overflow-hidden rounded-lg border-2 border-border bg-neve px-6 pt-10 pb-24">
+            <Decoracao />
+            <Card className="relative">
+              <div className="flex items-start gap-3">
+                <Ilustracao nome="dente-brilhando" size={64} />
+                <div className="min-w-0 flex-1">
+                  <Badge variant="secondary" className="max-w-full gap-1 whitespace-normal"><SealCheck size={16} weight="fill" aria-hidden="true" /> Validado pela Odontologia</Badge>
+                  <h3 className="mt-1 text-lg">{modulos[0]?.titulo}</h3>
+                </div>
+              </div>
+              <p className="text-base">{modulos[0]?.resumo}</p>
+              <p className="rounded-md bg-neve px-3 py-2 text-sm font-bold">Validado por: nome de quem revisou · data da validação</p>
+            </Card>
+            <div className="absolute right-4 bottom-0 translate-y-2"><Mascot pose="joinha" size={130} decorativo animar={false} /></div>
+          </div>
+          <span aria-hidden="true" className="absolute -top-5 right-2 grid size-16 -rotate-12 place-items-center rounded-full border-2 border-border bg-limao shadow-suave"><SealCheck size={36} weight="fill" /></span>
+        </div>
       </div>
+      <p data-reveal className="mt-8"><Link to="/conteudo" className="font-bold underline underline-offset-4">Ver os módulos disponíveis</Link></p>
     </Secao>
   );
 }

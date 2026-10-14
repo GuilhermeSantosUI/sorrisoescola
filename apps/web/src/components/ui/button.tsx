@@ -7,7 +7,7 @@ import { ICONES, Icone, type IconeNome } from "./icon"
 
 /** Botão shadcn adaptado à marca: alvo ≥ 48 px, pílula, ícone + texto. */
 const buttonVariants = cva(
-  "inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-bold whitespace-nowrap transition-all duration-150 outline-none hover:-translate-y-0.5 active:translate-y-0 active:scale-95 focus-visible:ring-4 focus-visible:ring-ring/40 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "inline-flex max-w-full shrink-0 items-center justify-center gap-2 rounded-full text-center font-bold transition-all duration-150 outline-none hover:-translate-y-0.5 active:translate-y-0 active:scale-95 focus-visible:ring-4 focus-visible:ring-ring/40 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
       variant: {

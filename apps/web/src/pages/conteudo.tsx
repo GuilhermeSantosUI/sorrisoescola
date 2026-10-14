@@ -12,12 +12,12 @@ const ROTULO: Record<Atividade['tipo'], [IconeNome, string]> = { video: ['play',
 export function Conteudo() {
   const modulos = useModules();
   return (
-    <main className="mx-auto grid max-w-6xl gap-4 px-6 py-10">
+    <main className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-4 px-6 py-10">
       <h1 className="text-3xl">Conteúdo</h1>
       {modulos.length === 0 && (
         <Card className="items-center text-center"><Ilustracao nome="dente-feliz" size={96} /><p>Nenhum módulo validado pela Odontologia ainda.</p></Card>
       )}
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {modulos.map((m) => (
           <Card key={m.id}>
             <div className="flex items-start gap-4">

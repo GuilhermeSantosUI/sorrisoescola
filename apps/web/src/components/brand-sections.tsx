@@ -56,7 +56,7 @@ export function NavMarca() {
     <nav aria-label="Seções do livro de marca" className="sticky top-[4.6rem] z-30 mt-6 rounded-3xl border-2 border-petroleo bg-branco/95 p-1 backdrop-blur">
       <ul className="flex flex-wrap justify-center gap-x-0.5">
         {SECOES.map(([id, nome]) => (
-          <li key={id}><a data-nav={id} href={`#${id}`} className="inline-flex min-h-touch items-center rounded-full px-2 text-sm font-bold transition-colors hover:bg-neve [&.ativo]:bg-limao">{nome}</a></li>
+          <li key={id}><a data-nav={id} href={`#${id}`} className="inline-flex min-h-touch min-w-12 items-center justify-center rounded-full px-2 text-sm font-bold transition-colors hover:bg-neve [&.ativo]:bg-limao">{nome}</a></li>
         ))}
       </ul>
     </nav>
@@ -495,7 +495,7 @@ export function Aplicacao() {
         </TabsContent>
 
         <TabsContent value="sala">
-          <div className="mx-auto max-w-3xl rounded-lg border-8 border-petroleo-escuro bg-neve shadow-forte">
+          <div className="mx-auto max-w-3xl overflow-hidden rounded-lg border-8 border-petroleo-escuro bg-neve shadow-forte">
             <div className="flex items-center justify-between border-b-2 border-petroleo bg-branco px-4 py-2">
               <strong className="font-titulo text-lg">{mods[0]?.titulo}</strong>
               <ol className="flex gap-1.5" aria-label="Etapas">{[0, 1, 2, 3].map((k) => <li key={k} className={`size-3.5 rounded-full border-2 border-petroleo ${k < 3 ? 'bg-turquesa' : 'bg-amarelo-limao'}`} />)}</ol>

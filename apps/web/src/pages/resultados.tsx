@@ -28,7 +28,7 @@ export function Resultados() {
 
   if (!turma) return <main className="px-6 py-10"><p>Crie uma turma primeiro.</p></main>;
   return (
-    <main className="mx-auto grid max-w-6xl gap-4 px-6 py-10">
+    <main className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-4 px-6 py-10">
       <h1 className="text-3xl">Resultados: {turma.nome}</h1>
       <div className="flex flex-wrap items-center gap-3">
         <Select value={tema} onValueChange={(v) => { setTema(v as 'todos' | Tema); setMostrar(PAGINA); }}>

@@ -28,7 +28,7 @@ export function Acompanhamento() {
   );
   const pct = percentualConcluido(dados.modulosConcluidos.length, dados.totalModulos);
   return (
-    <main className="mx-auto grid w-full max-w-3xl gap-4 px-6 py-10">
+    <main className="mx-auto grid w-full max-w-3xl grid-cols-1 gap-4 px-6 py-10">
       <header className="flex flex-wrap items-center gap-4"><Mascot pose={pct >= 50 ? 'joinha' : 'acenando'} size={120} decorativo /><div><p className="text-sm font-bold">Acompanhando</p><h1 className="text-3xl">{dados.apelido}</h1></div></header>
       <Card>
         <CardTitle className="text-xl">Tarefas concluídas: {dados.modulosConcluidos.length} de {dados.totalModulos}</CardTitle>

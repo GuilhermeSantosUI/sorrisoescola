@@ -30,7 +30,7 @@ export function Turma() {
   }
 
   return (
-    <main className="mx-auto grid max-w-lg gap-4 px-6 py-10">
+    <main className="mx-auto grid w-full max-w-lg grid-cols-1 gap-4 px-6 py-10">
       <h1 className="text-3xl">Turma</h1>
       {turma && !criando && (
         <Card className="items-center text-center">

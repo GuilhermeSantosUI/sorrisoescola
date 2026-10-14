@@ -59,7 +59,8 @@
   /* Borda padrão do design system (shadcn: border-border). Sem isso, border-2 usaria currentColor. */
   *, ::after, ::before { border-color: var(--color-border); }
   body { background: var(--color-neve); color: var(--color-petroleo-escuro); font-family: var(--font-texto); font-size: var(--text-base); }
-  h1, h2, h3 { font-family: var(--font-titulo); font-weight: 800; }
+  h1, h2, h3 { font-family: var(--font-titulo); font-weight: 800; overflow-wrap: break-word; hyphens: auto; }
+  html, body { overflow-x: clip; }
   :focus-visible { outline: 3px solid var(--color-petroleo-escuro); outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) {
     *, ::before, ::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

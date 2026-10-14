@@ -77,7 +77,7 @@ export function Alunos() {
 
   if (!turma) return <main className="mx-auto max-w-6xl px-6 py-10"><p>Crie uma turma primeiro. <Link to="/professor/turma" className="font-bold underline">Criar turma</Link></p></main>;
   return (
-    <main className="mx-auto grid w-full max-w-6xl gap-4 px-6 py-10">
+    <main className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-4 px-6 py-10">
       <div className="flex flex-wrap items-center gap-3"><UsersThree size={36} weight="duotone" aria-hidden="true" /><h1 className="text-3xl">Alunos de {turma.nome}</h1></div>
       <p className="max-w-3xl text-lg">Identificamos cada aluno só por um apelido. Use esta lista para acompanhar as tarefas de cada um e, se a família quiser, gerar um código de acompanhamento.</p>
       <Card>

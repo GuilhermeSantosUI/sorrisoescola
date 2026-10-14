@@ -97,9 +97,9 @@ export function Professor() {
   const recentes = (rows ?? []).slice(-5).reverse();
 
   return (
-    <main className="mx-auto grid w-full max-w-6xl gap-5 px-6 py-8">
+    <main className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 px-6 py-8">
       {/* Cabeçalho do painel */}
-      <header className="relative grid gap-4 overflow-hidden rounded-lg border-2 border-border bg-turquesa p-6 shadow-suave md:grid-cols-[1fr_auto] md:items-center">
+      <header className="relative grid grid-cols-1 gap-4 overflow-hidden rounded-lg border-2 border-border bg-turquesa p-6 shadow-suave md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
         <div className="flex items-center gap-4">
           <div className="hidden shrink-0 sm:block"><Mascot pose="joinha" size={110} decorativo animar={false} /></div>
           <div>

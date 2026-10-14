@@ -27,9 +27,9 @@ export function Responsaveis() {
     finally { setCarregando(false); }
   }
   return (
-    <main className="mx-auto grid w-full max-w-6xl gap-6 px-6 py-10">
-      <header className="flex flex-wrap items-center gap-4"><MascoteRosto nome="feliz" size={88} decorativo /><div><h1 className="text-3xl">Acompanhamento para famílias</h1><p className="mt-1 max-w-2xl text-lg">Opcional e com o mínimo de dados. O professor gera um código para você ver como seu filho ou sua filha está avançando.</p></div></header>
-      <div className="grid gap-4 md:grid-cols-2">
+    <main className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 px-6 py-10">
+      <header className="flex flex-wrap items-center gap-4"><MascoteRosto nome="feliz" size={88} decorativo /><div className="min-w-0 flex-1 basis-64"><h1 className="text-2xl sm:text-3xl">Acompanhamento para famílias</h1><p className="mt-1 max-w-2xl text-lg">Opcional e com o mínimo de dados. O professor gera um código para você ver como seu filho ou sua filha está avançando.</p></div></header>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <Card>
           <CardTitle className="flex items-center gap-2 text-xl"><ShieldCheck size={26} weight="duotone" aria-hidden="true" /> O que você vê</CardTitle>
           <ul className="grid gap-2">{VE.map((t) => <li key={t} className="flex items-center gap-2"><Check size={20} weight="bold" aria-hidden="true" />{t}</li>)}</ul>

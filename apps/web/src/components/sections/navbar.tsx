@@ -11,7 +11,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b-2 border-border bg-turquesa/95 backdrop-blur">
       <nav aria-label="Principal" className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-4 gap-y-1 px-6 py-2 lg:flex-nowrap">
-        <Link to="/" className="flex shrink-0 items-center gap-2 font-titulo text-xl font-extrabold">
+        <Link to="/" className="flex min-h-12 shrink-0 items-center gap-2 font-titulo text-xl font-extrabold">
           <img src="/brand/logo-icone.svg" alt="" width={40} height={40} /> Sorriso na Escola
         </Link>
         <button type="button" aria-expanded={aberto} aria-controls="menu-principal" onClick={() => setAberto((v) => !v)} className="ml-auto inline-flex min-h-12 items-center gap-2 rounded-full border-2 border-border bg-card px-4 font-bold lg:hidden">
