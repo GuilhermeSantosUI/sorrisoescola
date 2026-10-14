@@ -1,0 +1,696 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Sorriso na Escola API (PLACEHOLDER)",
+    "version": "0.0.1"
+  },
+  "paths": {
+    "/auth/professor/codigo": {
+      "post": {
+        "operationId": "solicitarCodigo",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Código enviado"
+          }
+        }
+      }
+    },
+    "/auth/professor/entrar": {
+      "post": {
+        "operationId": "entrarProfessor",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "codigo"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "codigo": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sessão",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sessao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/renovar": {
+      "post": {
+        "operationId": "renovarSessao",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "refreshToken"
+                ],
+                "properties": {
+                  "refreshToken": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sessão",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sessao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/turmas": {
+      "post": {
+        "operationId": "criarTurma",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "nome",
+                  "codigo"
+                ],
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "codigo": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Turma",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Turma"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/turmas/entrar": {
+      "post": {
+        "operationId": "entrarCrianca",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "codigo",
+                  "apelido"
+                ],
+                "properties": {
+                  "codigo": {
+                    "type": "string"
+                  },
+                  "apelido": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sessão da criança",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sessao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/turmas/{turmaId}/resultados": {
+      "get": {
+        "operationId": "resultadosTurma",
+        "parameters": [
+          {
+            "name": "turmaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resultados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RespostaQuiz"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quiz/respostas": {
+      "post": {
+        "operationId": "enviarRespostaQuiz",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RespostaQuiz"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Registrado"
+          }
+        }
+      }
+    },
+    "/progresso": {
+      "put": {
+        "operationId": "salvarProgresso",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Progresso"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Registrado"
+          }
+        }
+      }
+    },
+    "/feedback": {
+      "post": {
+        "operationId": "enviarFeedback",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "turmaId",
+                  "respostas"
+                ],
+                "properties": {
+                  "turmaId": {
+                    "type": "string"
+                  },
+                  "respostas": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Registrado"
+          }
+        }
+      }
+    },
+    "/turmas/{turmaId}/alunos": {
+      "get": {
+        "operationId": "alunosDaTurma",
+        "parameters": [
+          {
+            "name": "turmaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Alunos (apelidos)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Aluno"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "adicionarAluno",
+        "parameters": [
+          {
+            "name": "turmaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "apelido"
+                ],
+                "properties": {
+                  "apelido": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Aluno",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aluno"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/turmas/{turmaId}/alunos/{alunoId}/conclusoes": {
+      "post": {
+        "operationId": "concluirModuloAluno",
+        "parameters": [
+          {
+            "name": "turmaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "alunoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "moduloId"
+                ],
+                "properties": {
+                  "moduloId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Registrado"
+          }
+        }
+      }
+    },
+    "/alunos/{alunoId}/codigo-responsavel": {
+      "post": {
+        "operationId": "gerarCodigoResponsavel",
+        "parameters": [
+          {
+            "name": "alunoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Código de acompanhamento",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CodigoResponsavel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/responsaveis/entrar": {
+      "post": {
+        "operationId": "entrarResponsavel",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "codigo",
+                  "consentimento"
+                ],
+                "properties": {
+                  "codigo": {
+                    "type": "string"
+                  },
+                  "consentimento": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sessão do responsável",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sessao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/responsaveis/acompanhamento": {
+      "get": {
+        "operationId": "acompanhamento",
+        "responses": {
+          "200": {
+            "description": "Resumo mínimo do filho",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Acompanhamento"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/responsaveis/vinculo": {
+      "delete": {
+        "operationId": "revogarVinculo",
+        "responses": {
+          "204": {
+            "description": "Vínculo removido"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Sessao": {
+        "type": "object",
+        "required": [
+          "accessToken",
+          "refreshToken",
+          "papel"
+        ],
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          },
+          "papel": {
+            "type": "string",
+            "enum": [
+              "professor",
+              "crianca",
+              "responsavel"
+            ]
+          },
+          "turmaId": {
+            "type": "string"
+          }
+        }
+      },
+      "Turma": {
+        "type": "object",
+        "required": [
+          "id",
+          "nome",
+          "codigo"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "codigo": {
+            "type": "string"
+          }
+        }
+      },
+      "RespostaQuiz": {
+        "type": "object",
+        "required": [
+          "moduloId",
+          "tema",
+          "acertos",
+          "total",
+          "pontuacao",
+          "duracaoSegundos"
+        ],
+        "properties": {
+          "moduloId": {
+            "type": "string"
+          },
+          "tema": {
+            "type": "string"
+          },
+          "acertos": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          },
+          "pontuacao": {
+            "type": "integer",
+            "description": "0-100"
+          },
+          "duracaoSegundos": {
+            "type": "integer"
+          }
+        }
+      },
+      "Progresso": {
+        "type": "object",
+        "required": [
+          "modulosConcluidos",
+          "diasEscovando"
+        ],
+        "properties": {
+          "modulosConcluidos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "diasEscovando": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Aluno": {
+        "type": "object",
+        "required": [
+          "id",
+          "apelido",
+          "modulosConcluidos",
+          "diasEscovando"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "apelido": {
+            "type": "string"
+          },
+          "modulosConcluidos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "diasEscovando": {
+            "type": "integer"
+          },
+          "ultimaAtividadeEm": {
+            "type": "string"
+          }
+        }
+      },
+      "CodigoResponsavel": {
+        "type": "object",
+        "required": [
+          "codigo",
+          "expiraEm"
+        ],
+        "properties": {
+          "codigo": {
+            "type": "string"
+          },
+          "expiraEm": {
+            "type": "string",
+            "description": "ISO 8601"
+          }
+        }
+      },
+      "Acompanhamento": {
+        "type": "object",
+        "required": [
+          "apelido",
+          "modulosConcluidos",
+          "totalModulos",
+          "diasEscovando",
+          "sequenciaDias",
+          "estrelas",
+          "consentimentoEm"
+        ],
+        "description": "Mínimo de dados: sem respostas individuais, sem outros alunos, sem dados do responsável.",
+        "properties": {
+          "apelido": {
+            "type": "string"
+          },
+          "modulosConcluidos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "totalModulos": {
+            "type": "integer"
+          },
+          "diasEscovando": {
+            "type": "integer"
+          },
+          "sequenciaDias": {
+            "type": "integer"
+          },
+          "estrelas": {
+            "type": "integer"
+          },
+          "ultimaAtividadeEm": {
+            "type": "string"
+          },
+          "consentimentoEm": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

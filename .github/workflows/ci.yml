@@ -1,0 +1,40 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - name: schema.ts e openapi.json atualizados
+        run: |
+          pnpm api:types
+          git diff --exit-code packages/shared/src/api
+      - name: tokens.ts em sincronia com o @theme
+        run: pnpm theme:check
+      - name: bundle de produção sem dados de demonstração
+        run: |
+          pnpm build:web
+          ! grep -rlE "mock-access|createMockFetch|DENTE2" apps/web/dist/assets
+  paridade-design:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm build:web
+      - name: servidores (web e app)
+        run: |
+          (cd apps/web && pnpm exec vite preview --port 4173 &) 
+          (cd apps/mobile && CI=1 npx expo start --web --port 8099 &)
+          npx wait-on http://localhost:4173 http://localhost:8099 --timeout 240000
+      - run: pnpm design:parity

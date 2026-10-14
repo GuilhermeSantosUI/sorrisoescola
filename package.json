@@ -1,0 +1,44 @@
+{
+  "name": "sorriso-na-escola",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev:web": "pnpm --filter @sorriso/web dev",
+    "dev:mobile": "pnpm --filter @sorriso/mobile start",
+    "build:web": "pnpm --filter @sorriso/web build",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "api:types": "pnpm --filter @sorriso/shared api:types",
+    "theme:sync": "tsx scripts/sync-theme.ts",
+    "theme:check": "tsx scripts/sync-theme.ts --check",
+    "brand:check": "tsx scripts/check-brand-assets.ts",
+    "illustrations:build": "node --experimental-strip-types scripts/build-illustrations.mjs",
+    "mascot:build": "node --experimental-strip-types scripts/build-mascot.mjs",
+    "design:parity": "node scripts/design-parity.mjs",
+    "screens": "node scripts/capture-screens.mjs",
+    "brand:build": "node --experimental-strip-types scripts/build-brand.mjs",
+    "dev:mobile:web": "pnpm --filter @sorriso/mobile web",
+    "dev:mobile:ios": "pnpm --filter @sorriso/mobile ios",
+    "dev:mobile:android": "pnpm --filter @sorriso/mobile android"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "eslint": "^9.17.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.14.0",
+    "opentype.js": "^2.0.0",
+    "playwright": "^1.64.1",
+    "prettier": "^3.4.2",
+    "sharp": "^0.35.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.19.0"
+  }
+}

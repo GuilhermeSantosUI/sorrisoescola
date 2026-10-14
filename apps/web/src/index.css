@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* Somente tema claro: `dark:` só vale com a classe .dark (que nunca é aplicada), ignorando o modo escuro do sistema. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* tokens:start (gerado por `pnpm theme:sync`; não edite) */
+@theme {
+  --color-turquesa: #53D9C5;
+  --color-verde-agua: #4DAEA2;
+  --color-petroleo: #3B5C63;
+  --color-petroleo-escuro: #2B484F;
+  --color-limao: #B6F15A;
+  --color-amarelo-limao: #DBE622;
+  --color-branco: #FFFFFF;
+  --color-neve: #F4FBF9;
+  --color-erro: #B3261E;
+  --color-sujeira: #9A8A3A;
+  --color-background: #F4FBF9;
+  --color-foreground: #2B484F;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #2B484F;
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #2B484F;
+  --color-primary: #53D9C5;
+  --color-primary-foreground: #2B484F;
+  --color-secondary: #B6F15A;
+  --color-secondary-foreground: #2B484F;
+  --color-muted: #F4FBF9;
+  --color-muted-foreground: #3B5C63;
+  --color-accent: #B6F15A;
+  --color-accent-foreground: #2B484F;
+  --color-destructive: #B3261E;
+  --color-destructive-foreground: #FFFFFF;
+  --color-border: #3B5C63;
+  --color-input: #3B5C63;
+  --color-ring: #2B484F;
+  --font-titulo: 'Baloo 2', system-ui, sans-serif;
+  --font-texto: 'Nunito', system-ui, sans-serif;
+  --text-base: 1.125rem;
+  --text-sm: 1rem;
+  --text-lg: 1.375rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.25rem;
+  --text-3xl: 3rem;
+  --text-sala: 4rem;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  --shadow-suave: 0 4px 12px rgba(43, 72, 79, 0.15);
+  --shadow-forte: 0 8px 24px rgba(43, 72, 79, 0.25);
+  --spacing-touch: 48px;
+}
+/* tokens:end */
+
+@layer base {
+  html { color-scheme: light; font-size: 16px; }
+  /* Borda padrão do design system (shadcn: border-border). Sem isso, border-2 usaria currentColor. */
+  *, ::after, ::before { border-color: var(--color-border); }
+  body { background: var(--color-neve); color: var(--color-petroleo-escuro); font-family: var(--font-texto); font-size: var(--text-base); }
+  h1, h2, h3 { font-family: var(--font-titulo); font-weight: 800; }
+  :focus-visible { outline: 3px solid var(--color-petroleo-escuro); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer base {
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  section[id] { scroll-margin-top: 9.5rem; }
+}

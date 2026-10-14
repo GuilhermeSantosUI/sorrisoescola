@@ -1,0 +1,6 @@
+node_modules
+dist
+.expo
+pnpm-lock.yaml
+packages/shared/src/api/schema.ts
+packages/shared/src/api/openapi.json
