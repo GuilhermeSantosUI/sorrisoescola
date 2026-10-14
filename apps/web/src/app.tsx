@@ -3,6 +3,7 @@ import { Navbar } from './components/sections/navbar';
 import { Footer } from './components/sections/footer';
 import { MockBanner } from './components/mock-banner';
 import { Toaster } from './components/ui/sonner';
+import { PwaStatus } from './components/pwa-status';
 import { Home } from './pages/home';
 import { Auth } from './pages/auth';
 import { Sala } from './pages/sala';
@@ -44,6 +45,7 @@ export function App() {
       </Routes>
       {!emSala && <Footer />}
       <Toaster position="top-center" />
+      <PwaStatus />
     </>
   );
 }
