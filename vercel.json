@@ -1,7 +1,7 @@
 {
   "installCommand": "pnpm install --frozen-lockfile",
-  "buildCommand": "pnpm --filter @sorriso/web build",
-  "outputDirectory": "apps/web/dist",
+  "buildCommand": "pnpm --filter @sorriso/web build && rm -rf dist && cp -R apps/web/dist dist",
+  "outputDirectory": "dist",
   "rewrites": [{ "source": "/((?!sw\\.js|workbox-.*|manifest\\.webmanifest|brand/|pwa/|ilustracoes/|mascote/|assets/).*)", "destination": "/index.html" }],
   "headers": [
     { "source": "/sw.js", "headers": [{ "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }, { "key": "Service-Worker-Allowed", "value": "/" }] },
