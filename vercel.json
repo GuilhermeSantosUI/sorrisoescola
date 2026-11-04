@@ -1,6 +1,6 @@
 {
   "installCommand": "pnpm install --frozen-lockfile",
-  "buildCommand": "pnpm --filter @sorriso/web build && rm -rf dist && cp -R apps/web/dist dist",
+  "buildCommand": "pnpm --filter @sorriso/web build",
   "outputDirectory": "dist",
   "rewrites": [{ "source": "/((?!sw\\.js|workbox-.*|manifest\\.webmanifest|brand/|pwa/|ilustracoes/|mascote/|assets/).*)", "destination": "/index.html" }],
   "headers": [
