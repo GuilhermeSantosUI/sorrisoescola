@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
     publicDir: 'public',
     resolve: { alias: { '@': path.resolve(import.meta.dirname, 'src') } },
     server: { fs: { allow: ['../..'] } },
-    // Constante de build: em produção é sempre false, então o código de demonstração é removido do bundle.
-    define: { __USE_MOCKS__: JSON.stringify(mode !== 'production' && env.VITE_USE_MOCKS === 'true') },
+    // O ambiente de deploy decide explicitamente se a demonstração será incluída.
+    define: { __USE_MOCKS__: JSON.stringify(env.VITE_USE_MOCKS === 'true') },
   };
 });
